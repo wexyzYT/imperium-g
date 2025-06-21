@@ -85,14 +85,17 @@ func update_zoom(incr: float, zoom_anchor: Vector2):
 	update_camera_limits()
 
 func update_camera_limits():
-	var viewport_size = get_viewport_rect().size
-	var visible_width = viewport_size.x / current_zoom_level
-	var visible_height = viewport_size.y / current_zoom_level
-	var half_w = visible_width / 2.0
-	var half_h = visible_height / 2.0
-	
-	# Set camera limits
-	limit_left = -half_w
-	limit_right = map_width + half_w
-	limit_top = -half_h
-	limit_bottom = map_height + half_h
+        var viewport_size = get_viewport_rect().size
+        var visible_width = viewport_size.x / current_zoom_level
+        var visible_height = viewport_size.y / current_zoom_level
+        var half_w = visible_width / 2.0
+        var half_h = visible_height / 2.0
+
+        # Set camera limits
+        limit_left = -half_w
+        limit_right = map_width + half_w
+        limit_top = -half_h
+        limit_bottom = map_height + half_h
+
+        # Clamp current position against the new limits
+        update_position(position)
